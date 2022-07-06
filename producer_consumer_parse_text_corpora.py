@@ -20,7 +20,7 @@ def publish_message(producer_instance, topic_name, key, value):
 def connect_kafka_producer():
     _producer = None
     try:
-        _producer = KafkaProducer(bootstrap_servers=['localhost:9092'], api_version=(0, 10))
+        _producer = KafkaProducer(bootstrap_servers=['192.168.0.106:9092'], api_version=(0, 10))
     except Exception as ex:
         print('Exception while connecting Kafka')
         print(str(ex))
@@ -81,11 +81,11 @@ def parse(markup):
 if __name__ == '__main__':
     print('Running Consumer..')
     parsed_records = []
-    topic_name = 'raw_recipes'
-    parsed_topic_name = 'parsed_recipes'
+    topic_name = 'raw_text_corpora'
+    parsed_topic_name = 'parsed_text_corpora'
 
     consumer = KafkaConsumer(topic_name, auto_offset_reset='earliest',
-                             bootstrap_servers=['localhost:9092'], api_version=(0, 10), consumer_timeout_ms=1000)
+                             bootstrap_servers=['192.168.0.106:9092'], api_version=(0, 10), consumer_timeout_ms=1000)
     for msg in consumer:
         html = msg.value
         result = parse(html)

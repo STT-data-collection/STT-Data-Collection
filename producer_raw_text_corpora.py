@@ -20,7 +20,7 @@ def publish_message(producer_instance, topic_name, key, value):
 def connect_kafka_producer():
     _producer = None
     try:
-        _producer = KafkaProducer(bootstrap_servers=['localhost:9092'], api_version=(0, 10))
+        _producer = KafkaProducer(bootstrap_servers=['192.168.0.106:9092'], api_version=(0, 10))
     except Exception as ex:
         print('Exception while connecting Kafka')
         print(str(ex))
@@ -42,7 +42,7 @@ def fetch_raw(recipe_url):
         return html.strip()
 
 
-def get_recipes():
+def get_text_corpus():
     recipies = []
     salad_url = 'https://www.allrecipes.com/recipes/96/salad/'
     url = 'https://www.allrecipes.com/recipes/96/salad/'
@@ -61,8 +61,9 @@ def get_recipes():
                 recipe = fetch_raw(link['href'])
                 recipies.append(recipe)
                 idx += 1
+            print(recipies)
     except Exception as ex:
-        print('Exception in get_recipes')
+        print('Exception in get_text_corpus')
         print(str(ex))
     finally:
         return recipies
@@ -74,10 +75,10 @@ if __name__ == '__main__':
         'Pragma': 'no-cache'
     }
 
-    all_recipes = get_recipes()
-    if len(all_recipes) > 0:
+    all_text_corpus = get_text_corpus()
+    if len(all_text_corpus) > 0:
         kafka_producer = connect_kafka_producer()
-        for recipe in all_recipes:
-            publish_message(kafka_producer, 'raw_recipes', 'raw', recipe.strip())
+        for recipe in all_text_corpus:
+            publish_message(kafka_producer, 'raw_text_corpora', 'raw', recipe.strip())
         if kafka_producer is not None:
             kafka_producer.close()
