@@ -13,11 +13,14 @@ def greet():
 
 
 def greet_with_age(age,ti):
-    name = ti.xcom_pull(task_ids='get_nameo')
-    print(f"Hello, my name is {name}. And I am {age} years old!..")
+    first_name = ti.xcom_pull(task_ids='get_nameo',key='first_name')
+    last_name = ti.xcom_pull(task_ids='get_nameo',key='last_name')
+    print(f"Hello, my name is {first_name}-{last_name}. And I am {age} years old!..")
 
 
-def get_name():
+def get_name(ti):
+    ti.xcom_push(key='first_name',value='martin')
+    ti.xcom_push(key='last_name',value='bironga')
     return 'marto'
 
 with DAG(
