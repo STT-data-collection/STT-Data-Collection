@@ -28,5 +28,11 @@ with DAG(
         task_id='third_task',
         bash_command='echo hey am task 3 and i shall be running immediately after task 1 just like task 2'
     )
-    task1.set_downstream(task2)
-    task1.set_downstream(task3)
+    # method 1
+    # task1.set_downstream(task2)
+    # task1.set_downstream(task3)
+    # method 2
+    # task1 >> task2
+    # task1 >> task3
+    # method 3
+    task1 >> [task2,task3]
