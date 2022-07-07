@@ -13,23 +13,26 @@ default_args={
     schedule_interval='@daily')
 def hello_world():
     
-    @task()
+    @task(multiple_outputs=True)
     def get_name():
-        return 'Martin'
+        return {
+            'first_name':'Martin',
+            'last_name':'Bironga'
+        }
     
     @task()
     def get_age():
         return 25
 
     @task()
-    def greet(name,age):
+    def greet(first_name,last_name,age):
         print(
-            f"Hello I am called {name} "
+            f"Hello I am called {first_name} - {last_name} "
             f"and I am {age} years old"
         )
 
     name = get_name()
     age = get_age()
-    greet(name,age)
+    greet(name['first_name'],name['last_name'],age)
 
 greet_dag = hello_world()
