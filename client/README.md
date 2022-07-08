@@ -1,10 +1,10 @@
 # Getting Started with Create React App
 
 To install the client run:
-    ### `git clone https://github.com/STT-data-collection`
-    ### `cd frontend`
-    ### `yarn install`
-    ### `yarn start`
+    `git clone https://github.com/STT-data-collection`
+    `cd frontend`
+    `yarn install`
+    `yarn start`
 
 ## Available Scripts
 
