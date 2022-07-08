@@ -2,12 +2,14 @@
 // import Navbar from './components/nav/Navbar'
 import './App.css';
 import Header from './components/header/header';
+import Body from './components/body/body'
 
 function App() {
   return (
     <div>
-    < div className="App">
+    <div className="App">
         <Header />
+        <div><Body/></div>
     </div>
     </div>
   );
