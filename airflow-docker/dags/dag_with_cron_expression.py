@@ -12,7 +12,7 @@ with DAG(
     default_args=default_args,
     dag_id='dag_with_cron_expression',
     start_date=datetime(2022,6,22),
-    schedule_interval='0 0 * * *'
+    schedule_interval='5 3 * * Thu'
 )as dag:
     task1 = BashOperator(
         task_id='task1',
