@@ -4,12 +4,12 @@ import sys
 import pandas as pd
 # from fastapi import FastAPI, UploadFile
 import pickle
-sys.path.append("../")
-from scripts.helpers import *
-from scripts.logspectrogram import *
-from scripts.models import *
-from scripts.predict import *
-from scripts.tokenizer import *
+from .helpers import *
+from .logspectrogram import *
+from .models import *
+from .predict import *
+from .tokenizer import *
+
 
 class Model(self):
     def __init__(self):
