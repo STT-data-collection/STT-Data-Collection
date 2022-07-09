@@ -6,12 +6,7 @@ from flask_cors import CORS, cross_origin
 import numpy as np
 from script_logger import App_Logger
 
-
-# model = pickle.load(open("./api_utils/RFR-sales-02-06-2022-09-19-20.pkl", "rb"))
-# scaler = pickle.load(open("./api_utils/scaler-02-06-2022-09-19-20.pkl", "rb"))
-
 app = Flask(__name__)
-
 cors = CORS(app)
 
 @app.after_request
@@ -32,8 +27,31 @@ def convert(o):
 
 
 
-@app.route("/", methods=["GET"])
+@app.route("/text ", methods=["GET"])
 def home():
     return json.dumps({"result": "This is some text"}, default=convert)
 
 
+@app.route("/send_audio", methods=["POST", "GET"])
+def file_getter():
+    if request.method == "POST":
+        try:
+            file = request.files["file"]
+            print(file)
+           
+            return json.dumps(
+                {"success": "File Uploaded Successfully"}, default=convert
+            )
+            
+        except Exception as e:
+            print(e)
+            return json.dumps(
+                {"error": "Couldn't handle uploaded file. "}, default=convert
+            )
+    else:
+        print("error")
+        return json.dumps({"error": "No POST Data"}, default=convert)
+
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
