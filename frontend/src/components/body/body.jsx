@@ -4,29 +4,23 @@ import React, { useState } from "react";
 
 export const Body = () => {
   const [userData, setUserData] = useState({});
-  const [file, setFile] = useState();
+  const [ setFile] = useState();
 
   function handleChange(event) {
     setFile(event.target.files[0]);
   }
   
   function handleSubmit(event) {
-    // trackPromise(
     event.preventDefault()
-    const url = "https://stt-amharic.azurewebsites.net/predict";
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("fileName", file.name);
-    console.log(file.name);
+    const url = 'https://afri-speech-to-text.herokuapp.com/get-text';
     const config = {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
+      headers: { }
     };
     
-    axios.post(url, formData, config).then((response) => {
-      console.log(response.data.message);
+    axios.get(url,  config).then((response) => {
+      console.log(response.data.result);
       setUserData(response.data);
+
     }).catch((err)=>{
       console.log(err,"error here")
     });
@@ -36,9 +30,18 @@ export const Body = () => {
   return (
     <>
      <div className="bodys section__margin" id="wgpt3">
-    <div className="bodys-feature">
-        <h3>በስተቀኝ በኩል የሚገኘዎን ጽሑፍ ወደ ማይክሮፎኑ ያንብቡ</h3>
-    </div>
+      <section>
+        <div className="bodys-feature">
+        <button type="submit">ጀምር</button>
+         <h3>በስተቀኝ በኩል የሚገኘዎን ጽሑፍ ወደ ማይክሮፎኑ ያንብቡ</h3>
+        </div>
+      </section>
+      <section>
+        <div>
+        <p>{userData.message}</p>
+        </div>
+      </section>
+    
    <div>
    <div className="bodys-div"/>
      <h3>ወይም የድምጽ ፋይል ያያይዙ</h3>
