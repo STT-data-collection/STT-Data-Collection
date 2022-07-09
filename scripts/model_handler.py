@@ -55,16 +55,16 @@ class Model(self):
         # load saved model
         cnn_bi_rnn_model.load_weights("../models/cnn-bi-rnn.h5")
 
-    def validate_transcription(self , audiofile_path: list):
+    def validate_transcription(self , audiofile_path: list , actual: list):
         transcriptions = []
-        for f in audiofile_path:
-            result = self.predict_transcription(f)
+        for index,f in enumerate(audiofile_path):
+            result = self.predict_transcription(f , actual[index])
             transcriptions.push(result)
         return transcriptions
 
 
-    def predict_transcription(self , filename):        
-        samples, sample_rate = librosa.load('../data/tr_1_tr01001.wav' , sr=44100)
+    def predict_transcription(self , filename , actual):        
+        samples, sample_rate = librosa.load(filename , sr=8000)
 
                 # predict
         predicted, error = predict(
@@ -72,8 +72,12 @@ class Model(self):
                     samples,
                     tokenizer,
                     int_to_char,
-                    actual=None,
+                    actual= actual,
                 )
                 # build response
         return {"predicted": predicted , "error": error}
-        # print()
+
+if __name__ == "__main__":
+    the_model = Model()
+    result = the_model.validate_transcription(['../../ALFFA_PUBLIC/ASR/AMHARIC/data/train/wav/tr_10004_tr097086.wav'] , ["ጠጁን ኰመኰመ ኰመኰመና ሚስቱን ሲያሰቃያት አደረ"])
+    print(result)
