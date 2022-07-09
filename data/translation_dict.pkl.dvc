@@ -1,0 +1,5 @@
+outs:
+- md5: 9f35469de45a4f73dde05384c883553e
+  size: 1879474
+  isexec: true
+  path: translation_dict.pkl
