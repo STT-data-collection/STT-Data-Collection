@@ -1,10 +1,10 @@
-
+import os
 import json
 import logging
 from flask import Flask, app, request
 from flask_cors import CORS, cross_origin
 import numpy as np
-from script_logger import App_Logger
+
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -27,12 +27,15 @@ def convert(o):
 
 
 
-@app.route("/text ", methods=["GET"])
+@app.route("/", methods=["GET"])
 def home():
-    return json.dumps({"result": "This is some text"}, default=convert)
+    return json.dumps({"result": "This is home"}, default=convert)
 
+@app.route("/get-text", methods=["GET"])
+def text_getter():
+    return json.dumps({"result": "This is response text"}, default=convert)
 
-@app.route("/send_audio", methods=["POST", "GET"])
+@app.route("/send-audio", methods=["POST", "GET"])
 def file_getter():
     if request.method == "POST":
         try:
