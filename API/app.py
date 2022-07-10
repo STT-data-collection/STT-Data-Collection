@@ -43,7 +43,7 @@ def file_getter():
             print(file)
            
             return json.dumps(
-                {"success": "File Uploaded Successfully"}, default=convert
+                {"success": "ለቋንቋው እድገት ድጋፍ ስላደረጉት እናመሰግናለን::"}, default=convert
             )
             
         except Exception as e:
