@@ -6,9 +6,9 @@ const Header = () => (
   <div className="header section__padding" id="home">
     <div className="header-content">
       <h1 className="gradient__text">የአማርኛ ድምፅ መረጃ መሰብሰቢያ መሳሪያ</h1>
-      <p>ይህ የአማርኛ ቋንቋ የመረጃ መሰብሰቢያ መሳሪያ ነው። ለፈቃደኝነትዎ እናመሰግናለን። ለቀረበው ጽሑፍ የድምጽ መረጃን ለመሰብሰብ ወደ ታችኛው ክፍል ይሂዱ፣<br></br>የተሰበሰበውን መረጃ ትክክለኛነት ለማረጋገጥ እባክዎ ቀጣዩን ቁልፍ ይጫኑ።</p>
+      <p>ይህ የአማርኛ ቋንቋ የመረጃ መሰብሰቢያ መሳሪያ ነው። ለፈቃደኝነትዎ እናመሰግናለን። ለቀረበው ጽሑፍ የድምጽ መረጃን ለመሰብሰብ ወደ ታችኛው ክፍል ይሂዱ፣ የተሰበሰበውን መረጃ ትክክለኛነት ለማረጋገጥ እባክዎ ቀጣዩን ቁልፍ ይጫኑ።</p>
       <div className="header-content__input">
-        <button type="button">ጀምር</button>
+        <button type="button">ከዚህ ቀደም የተቀዳ ድምጽ ለማረጋገጥ</button>
       </div>
    </div>
 

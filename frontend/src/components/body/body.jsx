@@ -16,6 +16,7 @@ export const Body = () => {
   const { recorderState, ...handlers } = useRecorder();
   const { audio } = recorderState;
 
+  
   const handleShowRecordComponent = () => {
     setComponentToShow({ record: true, send: false });
   };
@@ -29,19 +30,26 @@ export const Body = () => {
 
   function handleClick(event) {
     event.preventDefault();
-    const url = "https://afri-speech-to-text.herokuapp.com/get-text";
-    const config = {
-      headers: {},
-    };
-    axios
-      .get(url, config)
-      .then((response) => {
-        console.log(response.data.result);
-        setUserData(response.data);
-      })
-      .catch((err) => {
-        console.log(err, "error here");
-      });
+    const respones = [
+      {
+        id: "14e06377-62ea-4d3d-be34-76cd6aa6a737",
+        headline: "ድርጅቱ ከባንኮች ጋር መሥራቱ አስተማማኝ የክፍያ ሥርዓት እንዲፈጠር አስችሏል",
+        article:
+          "የኢትዮጵያ የምርት ገበያ ድርጅት ከባንኮች ጋር\xa0 በጋራ በመስራቱ በተገበያዮች ላይ የክፍያ መተማመን እንዲፈጠር ማስቻሉን አስታውቋል፡፡ምርት\xa0 ገበያው ከአሁን ቀደም ከአስር ባንኮች ጋር በጋር በመስራቱ ላለፉት ዘጠኝ ዓመታት\xa0 በሚያከናውነው የግብይት ሂደት ላይ \xa0መተማመንን \xa0የፈጠረ የክፍያ ሥርዓት እንዲኖር አስችሏል ብሏል፡፡በዛሬው ዕለት ምርት ገበያው ከብርሃን ኢንተርናሽናል ባንክ ጋር በጋር\xa0 ለመስራት የሚያስችለውን ስምምነት ተፈራርሟል፡፡የአሁኑን ስምምነት ተከትሎ ምርት ገበያው ደንበኞቹ በአስራ አንድ ባንኮች የክፍያ አገልግሎት መፈጸም\xa0 እንዲችሉ የሚያደርግ ነው፡፡በአሁኑ ወቅት ድርጅቱ በዘጠኝ የሀገሪቱ አካባቢዎች እየገነባቸው ባሉ የግብይት መፈፀሚያ ማዕከላት ሻጭና አቅራቢዎች የክፍያ አገልግሎት እንዲፈጽሙ የሚያስችል ነው ብለዋል ዋና ስራ አስፈፃሚው አቶ ኤርሚያስ እሸቱ፡፡\xa0",
+        audio: "../data/test_amharic.wav",
+      },
+      {
+        id: "a658979e-8642-4fa4-9fc6-5d48286d6dc4",
+        headline: "ወልዋሎ የአራት ተጫዋቾች ዝውውር አጠናቀቀ",
+        article:
+          "በዝውውሩ በስፋት እየተሳተፉ የሚገኙት ወልዋሎዎች ከወር በፊት ቀድመው የተስማሙት ኢታሙና ኬይሙኔ ፣ ዓይናለም ኃይሉ ፣ ኬኔዲ አሺያ እና ጆናስ ሎሎን አስፈርመዋል።የእግር ኳስ ህይቱ በተወለደበት ከተማ ዓዲግራት ጀምሮ ሃገሩን ለማገልገል ወደ መከላከያ ሰራዊት ባቀናበት ወቅት ባሳየው ጥሩ አቋም ባህር ዳር ዩኒቨርሲቲ ቀጥሎም መከላከያን የተቀላቀለው  ተከላካዩ ዓይናለም ኃይለ ከዚህ ቀደም ለደደቢት፣ ዳሽን ቢራ፣ ፋሲል ከነማ እንዲሁም ለኢትዮጵያ ብሄራዊ ቡድን መጫወቱ ይታወሳል።ሌሎች ወልዋሎ የተቀላቀሉት ናሚቢያዊያኑ ኢታሙና ኬይሙኔ እና ጆናስ ሎሎ ናቸው። ኢታሙና ባለፈው ዓመት ከብርቱካናማዎቹ ጋር የተሳካ ቆይታ የነበረው ተጫዋች ሲሆን በግብፁ የአፍሪካ ዋንጫም ተሳታፊ እንደነበር ይታወሳል። ሌላው አዲስ የቢጫ ለባሾቹ ፈራሚ ጆናስ ሎሎ ሲሆን ከኢታሙና ቀጥሎ በፕሪምየር ሊጉ የተጫወተ ሁለተኛው ናሚቢያዊ እንደሚሆን ይጠበቃል።አራተኛው የወልዋሎ ፈራሚ ከዚ በፊት በሲዳማ ቡና ቆይታ የነበረው ኬኔዲ አሺያ ነው። ተጫዋቹ በወቅቱ ከፍተኛ ክፍያ በ2009 ክረምት ክለቡን ቢቀላቀልም ብዙም ሳይቆይ መለያየቱ ይታወሳል።ቡድኑን በአዲስ መልክ እያዋቀረ የሚገኘው ወልዋሎ እስካሁን 13 ተጫዋቾች አስፈርሟል።",
+        audio: "../data/test_amharic.wav",
+      },
+    ];
+    const random = Math.floor(Math.random() * respones.length);
+    console.log(random, respones[random]);
+        setUserData( respones[random]);
+      
   }
   function audioSubmit(event) {
     event.preventDefault();
@@ -73,44 +81,23 @@ export const Body = () => {
         <section>
           <form onClick={handleClick}>
             <div className="bodys-feature">
-              <button type="click">ጀምር</button>
+              <button className="shh"  type="click">ጀምር</button>
             </div>
           </form>
         </section>
         <section>
           <div>
-            <button onClick={handleShowRecordComponent}>
-            ድምፆን ለመቅረጽ
-            </button>
-            <button onClick={handleShowSendComponent}>
-            የድምጽ ፋይል ለማስገባት
-            </button>
+          <button className="sh"  onClick={handleShowRecordComponent}>የድምጽ ፋይል ለማስገባት</button>
+
+            <button className="sh" onClick={handleShowSendComponent}>ድምፆን ለመቅረጽ</button>
           </div>
           <div>
-            <h3>ከታች የሚገኘዎን ጽሑፍ ወደ ማይክሮፎኑ ያንብቡ</h3>
-            <p>{userData.result}</p>
+            <p className="res">{userData.headline}</p>
           </div>
         </section>
-        {componentToShow.record && (
-          <div>
-            <div className="bodys-div" />
-            <section className="voice-recorder">
-              <h1 className="title">Voice Recorder</h1>
-              <div className="recorder-container">
-                <RecorderControls
-                  recorderState={recorderState}
-                  handlers={handlers}
-                />
-                <RecordingsList audio={audio} />
-              </div>
-            </section>
-          </div>
-        )}
-        {/* Upload audio */}
-        <div>
-          <div className="bodys-div" />
-          <h3>ወይም የድምጽ ፋይል ያያይዙ</h3>
-          {componentToShow.send && (
+                {/* Upload audio */}
+                <div>
+          {componentToShow.record && (
             <div>
               <div className={classesp.container}>
                 <div className={classesp.upload}>
@@ -128,6 +115,22 @@ export const Body = () => {
             </div>
           )}{" "}
         </div>
+
+        {componentToShow.send && (
+          <div>
+            <div className="bodys-div" />
+            <section className="voice-recorder">
+            <h3>ጽሑፍን ወደ ማይክሮፎኑ ያንብቡ</h3>
+              <div className="recorder-container">
+                <RecorderControls
+                  recorderState={recorderState}
+                  handlers={handlers}
+                />
+                <RecordingsList audio={audio} />
+              </div>
+            </section>
+          </div>
+        )}{" "}
       </div>
     </>
   );
