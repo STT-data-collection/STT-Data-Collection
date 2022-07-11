@@ -2,7 +2,7 @@
 // import Navbar from './components/nav/Navbar'
 import './App.css';
 import Header from './components/header/header';
-import Body from './components/body/body'
+import {Body} from './components/body/body'
 
 function App() {
   return (
