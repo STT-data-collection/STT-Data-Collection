@@ -9,7 +9,7 @@ import numpy as np
 app = Flask(__name__)
 cors = CORS(app)
 
-TEXT_TOPIC = "text"
+TEXT_TOPIC = "spark-transformed-text"
 TEXT_AUDIO_PAIR_TOPIC = "text.audio.pair"
 BROKER_ADDRESS = 'localhost:39092'
 
