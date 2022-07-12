@@ -57,8 +57,8 @@ To install and run this project
 This folder holds python script files for airflow dags
 ### data
 This folder holds the data of the project (data is store on google drive using DVC)
-### endpoints 
-This folder holds backend Django apis
+### API
+This folder holds backend flask api
 ### frontend
 This folder holds front end of the project using Reactjs
 ### kafka
